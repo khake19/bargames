@@ -17,16 +17,18 @@ const Filter = () => <>
   </>
 
 const Games = () => {
-  const { data } = useFetch('/api/games')
-  console.log('data', data)
+  const { data: games } = useFetch('/api/games')
+
   return <div className={GamesStyle.container}>
     <Header />
     <Filter />
     <div className={GamesStyle.grid}>
-      <Card />
-      <Card />
-      <Card />
-      <Card />
+      {games?.slice(0, 10).map(game => <Card
+        key={game.id}
+        title={game.title}
+        thumbnail={game.thumbnail}
+        shortDescription={game.shortDescription}
+        />)}
     </div>
     </div>
 }

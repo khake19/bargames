@@ -1,18 +1,15 @@
 import React from 'react';
 import CardStyle from './Card.module.css'
-import logo from '../../logo.svg'
 
-const Card = () => <div className={CardStyle.card}>
-      <h2 className={CardStyle.title}>Card Title</h2>
+const Card = ({title, thumbnail, shortDescription}) => <div className={CardStyle.card}>
+      <h2 className={CardStyle.title}>{title}</h2>
       <div className={CardStyle.grid}>
         <div>
-          <img src={logo} className="App-logo" alt="logo" />
+          <img src={thumbnail} alt="logo" className={CardStyle.image} />
         </div>
         <div>
           <p>
-            One big change with the grid is that you first determine what 
-            the grid template will look like. Meaning how many columns 
-            and/or rows you want in your layout.
+            {shortDescription}
           </p>
           <p className={CardStyle.button}>
             View More 
