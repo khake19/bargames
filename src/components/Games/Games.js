@@ -1,6 +1,7 @@
 import { useFetch } from '../../api/fetcher.js';
 import GamesStyle from './Games.module.css'
 import Header from '../Header'
+import Card from '../Card'
 
 
 const Filter = () => <>
@@ -29,6 +30,7 @@ const Games = () => {
     <Filter />
     <div>
       {games.map(game => <GameItem key={game.id} name={game.name}/>)}
+      <Card />
     </div>
     </div>
 }
