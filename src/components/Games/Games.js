@@ -16,20 +16,16 @@ const Filter = () => <>
   </div>
   </>
 
-const GameItem = ({name}) => {
-  return <div>
-    {name}
-    </div>
-}
 const Games = () => {
   const { data } = useFetch('/api/games')
   console.log('data', data)
-  const games = [{id: 1, name: 'Apex Legends'}, { id: 2, name: 'Overwatch'}]
   return <div className={GamesStyle.container}>
     <Header />
     <Filter />
-    <div>
-      {games.map(game => <GameItem key={game.id} name={game.name}/>)}
+    <div className={GamesStyle.grid}>
+      <Card />
+      <Card />
+      <Card />
       <Card />
     </div>
     </div>
