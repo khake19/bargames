@@ -1,3 +1,5 @@
+import { useFetch } from '../../api/fetcher.js';
+
 const Header = () => <div>Find & Track the best free-to-play games!</div>
 const Filter = () => <>
   <div>
@@ -17,6 +19,8 @@ const GameItem = ({name}) => {
     </div>
 }
 const Games = () => {
+  const { data } = useFetch('/api/games')
+  console.log('data', data)
   const games = [{id: 1, name: 'Apex Legends'}, { id: 2, name: 'Overwatch'}]
   return <>
     <Header />
