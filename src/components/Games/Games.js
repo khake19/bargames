@@ -1,6 +1,8 @@
 import { useFetch } from '../../api/fetcher.js';
+import GamesStyle from './Games.module.css'
+import Header from '../Header'
 
-const Header = () => <div>Find & Track the best free-to-play games!</div>
+
 const Filter = () => <>
   <div>
     Search for what to play next!
@@ -22,13 +24,13 @@ const Games = () => {
   const { data } = useFetch('/api/games')
   console.log('data', data)
   const games = [{id: 1, name: 'Apex Legends'}, { id: 2, name: 'Overwatch'}]
-  return <>
+  return <div className={GamesStyle.container}>
     <Header />
     <Filter />
     <div>
       {games.map(game => <GameItem key={game.id} name={game.name}/>)}
     </div>
-    </>
+    </div>
 }
 
 export default Games
