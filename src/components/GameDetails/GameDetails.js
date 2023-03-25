@@ -43,6 +43,7 @@ const GameDetails = () => {
     </div>
     <div className={GameDetailsStyle.screenshots}>
       {game?.screenshots.map(screenshot => <img 
+        key={screenshot?.id}
         src={screenshot?.image} 
         alt="screenshot"
         className={GameDetailsStyle.screenshot}/>)}
