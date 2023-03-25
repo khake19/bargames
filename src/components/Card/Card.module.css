@@ -19,6 +19,7 @@
 } 
 .info {
   position: relative;
+  height: 130px;
 }
 .button {
   position: absolute;

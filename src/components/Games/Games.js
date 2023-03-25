@@ -44,7 +44,7 @@ const Games = () => {
     <Search />
     <Filter />
     <div className={GamesStyle.grid}>
-      {filteredGames?.slice(0, 10).map(game => <Card
+      {filteredGames?.map(game => <Card
         key={game.id}
         id={game.id}
         title={game.title}
