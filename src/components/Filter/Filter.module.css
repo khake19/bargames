@@ -1,0 +1,19 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+
+.platform {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+.label {
+  margin-right: 10px;
+}
+.inputField {
+  padding: 5px;
+}
+
+
