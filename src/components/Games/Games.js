@@ -28,10 +28,7 @@ const buildParams = (platform, sortBy, categories) => {
 }
 
 const Games = () => {
-  const platform = useFiltersStore((state) => state.platform)
-  const sortBy = useFiltersStore((state) => state.sortBy)
-  const categories = useFiltersStore((state) => state.categories)
-  const search = useFiltersStore((state) => state.search)
+  const { platform, sortBy, categories, search } = useFiltersStore();
 
   const queryString = buildParams(platform, sortBy, categories)
 
