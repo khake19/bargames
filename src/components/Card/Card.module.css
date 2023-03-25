@@ -17,13 +17,27 @@
   grid-template-columns: 1fr 2fr;
   gap: 10px;
 } 
+.info {
+  position: relative;
+}
 .button {
-  text-align: right;
-  vertical-align: bottom;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 10px;
+  background-color: #009FEB;
+  color: #FFFF;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 .image {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+a {
+  text-decoration: none;
+  color: #FFFF;
 }
 

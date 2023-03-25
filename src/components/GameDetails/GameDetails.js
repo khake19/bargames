@@ -1,10 +1,13 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import { useFetch } from '../../api/fetcher.js';
 import Header from '../Header';
 import GameDetailsStyle from './GameDetails.module.css';
+import { Link } from "react-router-dom";
 
 const GameDetails = () => {
-  const { data: game } = useFetch(`/api/game?id=540`)
+  const { gameId } = useParams();
+  const { data: game } = useFetch(`/api/game?id=${gameId}`)
 
   return <div className={GameDetailsStyle.container}> 
     <Header />
@@ -37,7 +40,7 @@ const GameDetails = () => {
         <div className={GameDetailsStyle.info}>
           <p className={GameDetailsStyle.title}>{game?.title}</p>
           <p>{game?.description}</p>
-          <div className={GameDetailsStyle.button}>Back</div>
+          <Link className={GameDetailsStyle.button} to='/'>Back</Link>
         </div>
       </div>
     </div>
