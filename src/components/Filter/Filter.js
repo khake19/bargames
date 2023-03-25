@@ -25,7 +25,7 @@ const Filter = () => {
   const categoryOptions = categories?.reduce((acc, category) => acc.concat({value: category, label: category}), [])
 
   return <div className={FilterStyle.container}>
-      <div className={FilterStyle.platform}>
+      <div className={FilterStyle.left}>
         <label className={FilterStyle.label}>Filter by Platform</label>
         <Select
           className={FilterStyle.inputField}
@@ -34,7 +34,7 @@ const Filter = () => {
           options={platformOptions}
         />
       </div>
-      <div className={FilterStyle.platform}>
+      <div className={FilterStyle.middle}>
         <label className={FilterStyle.label}>Filter by Category</label>
         <Select
           isMulti
@@ -43,7 +43,7 @@ const Filter = () => {
           options={categoryOptions}
         />
       </div>
-      <div className={FilterStyle.platform}>
+      <div className={FilterStyle.right}>
         <label className={FilterStyle.label}>Sort By</label>
         <Select
           className={FilterStyle.inputField}
