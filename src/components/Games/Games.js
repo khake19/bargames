@@ -6,18 +6,25 @@ import Card from '../Card'
 import Filter from '../Filter'
 import useFiltersStore from '../../stores/filters'
 
-const buildParams = (platform, sortBy) => {
+const buildParams = (platform, sortBy, categories) => {
   let queryString = ''
 
-  if (platform) {
+  if(platform) {
     queryString += `platform=${platform}`
   }
 
-  if (sortBy) {
+  if(sortBy) {
     if (queryString) {
       queryString += '&'
     }
     queryString += `sort-by=${sortBy}`
+  }
+
+  if(categories) {
+    if (queryString) {
+      queryString += '&'
+    }
+    queryString += categories.map(cat => `category=${cat}`).join('&');
   }
 
   if (queryString) {
@@ -30,8 +37,9 @@ const buildParams = (platform, sortBy) => {
 const Games = () => {
   const platform = useFiltersStore((state) => state.platform)
   const sortBy = useFiltersStore((state) => state.sortBy)
+  const categories = useFiltersStore((state) => state.categories)
 
-  const queryString = buildParams(platform, sortBy)
+  const queryString = buildParams(platform, sortBy, categories)
 
   const { data: games } = useFetch(`/api/games${queryString}`)
 

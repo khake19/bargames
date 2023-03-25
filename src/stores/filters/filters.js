@@ -6,7 +6,9 @@ const useFiltersStore = create(
     platform: '',
     addPlatform: (platform) => set({ platform }),
     sortBy: 'release-date',
-    addSortBy: (sortBy) => set({ sortBy })
+    addSortBy: (sortBy) => set({ sortBy }),
+    categories: [],
+    addCategory: (categories) => set({ categories })
   }))
 )
 
