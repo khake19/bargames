@@ -8,31 +8,23 @@ import Search from '../Search'
 import useFiltersStore from '../../stores/filters'
 
 const buildParams = (platform, sortBy, categories) => {
-  let queryString = ''
+  const queryParts = [];
 
-  if(platform) {
-    queryString += `platform=${platform}`
+  if (platform) {
+    queryParts.push(`platform=${platform}`);
   }
 
-  if(sortBy) {
-    if (queryString) {
-      queryString += '&'
-    }
-    queryString += `sort-by=${sortBy}`
+  if (sortBy) {
+    queryParts.push(`sort-by=${sortBy}`);
   }
 
-  if(categories.length) {
-    if (queryString) {
-      queryString += '&'
-    }
-    queryString += categories.map(cat => `category=${cat}`).join('&');
+  if (categories.length) {
+    categories.forEach(cat => {
+      queryParts.push(`category=${cat}`);
+    });
   }
 
-  if (queryString) {
-    queryString = `?${queryString}`
-  }
-
-  return queryString
+  return queryParts.length ? `?${queryParts.join('&')}` : '';
 }
 
 const Games = () => {
