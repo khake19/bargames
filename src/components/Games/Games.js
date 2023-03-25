@@ -1,23 +1,39 @@
+import React from 'react'
 import { useFetch } from '../../api/fetcher.js';
 import GamesStyle from './Games.module.css'
 import Header from '../Header'
 import Card from '../Card'
+import Filter from '../Filter'
+import useFiltersStore from '../../stores/filters'
 
+const buildParams = (platform, sortBy) => {
+  let queryString = ''
 
-const Filter = () => <>
-  <div>
-    Search for what to play next!
-    <input />
-  </div>
-  <div>
-    Filter by platform: <input />
-    Filter by category: <input />
-    Sort by: <input />
-  </div>
-  </>
+  if (platform) {
+    queryString += `platform=${platform}`
+  }
+
+  if (sortBy) {
+    if (queryString) {
+      queryString += '&'
+    }
+    queryString += `sort-by=${sortBy}`
+  }
+
+  if (queryString) {
+    queryString = `?${queryString}`
+  }
+
+  return queryString
+}
 
 const Games = () => {
-  const { data: games } = useFetch('/api/games')
+  const platform = useFiltersStore((state) => state.platform)
+  const sortBy = useFiltersStore((state) => state.sortBy)
+
+  const queryString = buildParams(platform, sortBy)
+
+  const { data: games } = useFetch(`/api/games${queryString}`)
 
   return <div className={GamesStyle.container}>
     <Header />
