@@ -4,6 +4,7 @@ import GamesStyle from './Games.module.css'
 import Header from '../Header'
 import Card from '../Card'
 import Filter from '../Filter'
+import Search from '../Search'
 import useFiltersStore from '../../stores/filters'
 
 const buildParams = (platform, sortBy, categories) => {
@@ -45,6 +46,7 @@ const Games = () => {
 
   return <div className={GamesStyle.container}>
     <Header />
+    <Search />
     <Filter />
     <div className={GamesStyle.grid}>
       {games?.slice(0, 10).map(game => <Card
