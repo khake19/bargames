@@ -21,7 +21,7 @@ const buildParams = (platform, sortBy, categories) => {
     queryString += `sort-by=${sortBy}`
   }
 
-  if(categories) {
+  if(categories.length) {
     if (queryString) {
       queryString += '&'
     }
