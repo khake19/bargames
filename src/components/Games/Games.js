@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import { useFetch } from '../../api/fetcher.js';
 import GamesStyle from './Games.module.css'
 import Header from '../Header'
@@ -39,17 +39,23 @@ const Games = () => {
   const platform = useFiltersStore((state) => state.platform)
   const sortBy = useFiltersStore((state) => state.sortBy)
   const categories = useFiltersStore((state) => state.categories)
+  const search = useFiltersStore((state) => state.search)
 
   const queryString = buildParams(platform, sortBy, categories)
 
   const { data: games } = useFetch(`/api/games${queryString}`)
+
+  const filteredGames = useMemo(() => {
+    if (!games) return [];
+    return games.filter((item) => item.title.toLowerCase().includes(search.toLowerCase()));
+  }, [games, search]);
 
   return <div className={GamesStyle.container}>
     <Header />
     <Search />
     <Filter />
     <div className={GamesStyle.grid}>
-      {games?.slice(0, 10).map(game => <Card
+      {filteredGames?.slice(0, 10).map(game => <Card
         key={game.id}
         title={game.title}
         thumbnail={game.thumbnail}

@@ -8,7 +8,9 @@ const useFiltersStore = create(
     sortBy: 'release-date',
     addSortBy: (sortBy) => set({ sortBy }),
     categories: [],
-    addCategory: (categories) => set({ categories })
+    addCategory: (categories) => set({ categories }),
+    search: '',
+    addSearch: (search) => set({ search })
   }))
 )
 
