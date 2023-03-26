@@ -1,15 +1,19 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
+
 import { useFetch } from '../../api/fetcher.js';
 import Header from '../Header';
 import GameDetailsStyle from './GameDetails.module.css';
-import { Link } from "react-router-dom";
+import Error from '../Error'
 
 const GameDetails = () => {
   const { gameId } = useParams();
-  const { data: game } = useFetch(`/api/game?id=${gameId}`)
 
-  return <div className={GameDetailsStyle.container}> 
+  const { data: game, isLoading } = useFetch(`/api/game?id=${gameId}`)
+
+  if((!game && !isLoading) || game?.status === 0) return <Error errorMessage={game?.statusMessage}/>
+
+  return <div className={GameDetailsStyle.container}>
     <Header />
     <div className={GameDetailsStyle.details}>
       <img src={game?.thumbnail} alt="thumbnail" className={GameDetailsStyle.image}/>
@@ -18,23 +22,23 @@ const GameDetails = () => {
           <p className={GameDetailsStyle.title}>Requirements</p>
           <div>
             <p className={GameDetailsStyle.bold}>Graphics</p>
-            {game?.minimumSystemRequirements.graphics}
+            {game?.minimumSystemRequirements?.graphics}
           </div>
           <div>
             <p className={GameDetailsStyle.bold}>Memory</p>
-            {game?.minimumSystemRequirements.memory}
+            {game?.minimumSystemRequirements?.memory}
           </div>
           <div>
             <p className={GameDetailsStyle.bold}>OS</p>
-            {game?.minimumSystemRequirements.os}
+            {game?.minimumSystemRequirements?.os}
           </div>
           <div>
             <p className={GameDetailsStyle.bold}>Processor</p>
-            {game?.minimumSystemRequirements.processor}
+            {game?.minimumSystemRequirements?.processor}
           </div>
           <div>
             <p className={GameDetailsStyle.bold}>Storage</p>
-            {game?.minimumSystemRequirements.storage}
+            {game?.minimumSystemRequirements?.storage}
           </div>
         </div>
         <div className={GameDetailsStyle.info}>
@@ -45,9 +49,9 @@ const GameDetails = () => {
       </div>
     </div>
     <div className={GameDetailsStyle.screenshots}>
-      {game?.screenshots.map(screenshot => <img 
+      {game?.screenshots?.map(screenshot => <img
         key={screenshot?.id}
-        src={screenshot?.image} 
+        src={screenshot?.image}
         alt="screenshot"
         className={GameDetailsStyle.screenshot}/>)}
     </div>

@@ -3,6 +3,8 @@ import { render, screen } from '@testing-library/react';
 import GameDetails from './GameDetails';
 import { createMemoryHistory } from 'history'
 import { MemoryRouter } from 'react-router-dom'
+import { useFetch } from '../../api/fetcher.js'
+import Error from '../Error'
 
 const MOCK_GAME_CATEGORIES = {
     "id": 548,
@@ -45,12 +47,22 @@ jest.mock('../../api/fetcher.js', () => {
   }
 });
 
+jest.mock('../Error', () => {
+  return jest.fn()
+});
 describe('GameDetails', () => {
-
   it('should be able to select a platform', async () => {
     const history = createMemoryHistory()
     render(<MemoryRouter history={history}><GameDetails /></MemoryRouter>)
 
     expect(screen.getByText(MOCK_GAME_CATEGORIES["title"])).toBeInTheDocument()
+  });
+
+  it('should be able to select a platform', async () => {
+    useFetch.mockImplementation(()=> ({}))
+    const history = createMemoryHistory()
+
+    render(<MemoryRouter history={history}><GameDetails /></MemoryRouter>)
+    expect(Error).toHaveBeenCalledTimes(1);
   });
 });

@@ -10,7 +10,6 @@ const swrConfig = {
 
 export const useFetch = (url) => {
   const { data, error, isValidating } = useSWR(url, fetcher, swrConfig);
-
   return {
     data,
     error,
