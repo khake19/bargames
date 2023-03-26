@@ -8,7 +8,6 @@ const Search = () => {
 
   const handleSearchChange = (e) => {
     addSearch(e.target.value)
-
   }
 
   return <div className={SearchStyle.container}>

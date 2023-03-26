@@ -17,17 +17,19 @@ const sortByOptions = [
 ];
 
 const Filter = () => {
-  const addPlatform = useFiltersStore((state) => state.addPlatform)
-  const addSortBy = useFiltersStore((state) => state.addSortBy)
-  const addCategory = useFiltersStore((state) => state.addCategory)
+  const {addPlatform, addSortBy, addCategory} = useFiltersStore()
 
   const { data: categories } = useFetch('/api/categories')
   const categoryOptions = categories?.reduce((acc, category) => acc.concat({value: category, label: category}), [])
 
-  return <div className={FilterStyle.container}>
+  return <form className={FilterStyle.container} role="form">
       <div className={FilterStyle.left}>
-        <label className={FilterStyle.label}>Filter by Platform</label>
+        <label htmlFor="platform" className={FilterStyle.label}>
+          Filter by Platform
+        </label>
         <Select
+          name="platform"
+          inputId="platform"
           className={FilterStyle.inputField}
           defaultValue={platformOptions[0]}
           onChange={(platform) => addPlatform(platform.value)}
@@ -35,8 +37,10 @@ const Filter = () => {
         />
       </div>
       <div className={FilterStyle.middle}>
-        <label className={FilterStyle.label}>Filter by Category</label>
+        <label htmlFor="categories" className={FilterStyle.label}>Filter by Category</label>
         <Select
+          name="categories"
+          inputId="categories"
           isMulti
           className={FilterStyle.inputField}
           onChange={(categories) => addCategory(categories.map(category => category.value))}
@@ -44,15 +48,17 @@ const Filter = () => {
         />
       </div>
       <div className={FilterStyle.right}>
-        <label className={FilterStyle.label}>Sort By</label>
+        <label htmlFor="sortBy" className={FilterStyle.label}>Sort By</label>
         <Select
+          name="sortBy"
+          inputId="sortBy"
           className={FilterStyle.inputField}
           defaultValue={sortByOptions[0]}
           onChange={(sortBy) => addSortBy(sortBy.value)}
           options={sortByOptions}
         />
       </div>
-  </div>
+    </form>
 }
 
 export default Filter

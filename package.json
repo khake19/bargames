@@ -26,6 +26,9 @@
     "coverage": "react-scripts test --coverage .",
     "analyze": "source-map-explorer 'build/static/js/*.js'"
   },
+  "jest": {
+    "resetMocks": false
+  },
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -45,6 +48,7 @@
     ]
   },
   "devDependencies": {
-    "@testing-library/react-hooks": "^8.0.1"
+    "@testing-library/react-hooks": "^8.0.1",
+    "react-select-event": "^5.5.1"
   }
 }
