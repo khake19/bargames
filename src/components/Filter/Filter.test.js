@@ -1,7 +1,6 @@
 import React from 'react';
-import { act, render, screen, fireEvent, renderHook } from '@testing-library/react';
+import { act, render, screen } from '@testing-library/react';
 import Filter from './Filter';
-import useFiltersStore from '../../stores/filters';
 import selectEvent from 'react-select-event'
 
 const MOCK_GAME_CATEGORIES = [
