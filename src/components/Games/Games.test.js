@@ -1,7 +1,7 @@
-import { act, render, renderHook, screen, fireEvent } from '@testing-library/react';
+import React from 'react';
+import { render, renderHook, screen, fireEvent } from '@testing-library/react';
 import { createMemoryHistory } from 'history'
 import { MemoryRouter } from 'react-router-dom'
-import selectEvent from 'react-select-event'
 
 import Games from './Games';
 import useFiltersStore  from '../../stores/filters'
