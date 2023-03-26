@@ -25,15 +25,19 @@
 }
 .info {
   position: relative;
+  font-size: 18px;
 }
 .title {
   font-weight: 600;
   font-size: 24px;
-  margin: 0px;
+  margin-bottom: 10px;
   text-align: center;
 }
 .bold {
   font-weight: bold;
+}
+.requirement {
+  margin-bottom: 15px;
 }
 .button {
   position: absolute;

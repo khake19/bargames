@@ -19,31 +19,31 @@ const GameDetails = () => {
       <img src={game?.thumbnail} alt="thumbnail" className={GameDetailsStyle.image}/>
       <div className={GameDetailsStyle.description}>
         <div className={GameDetailsStyle.requirements}>
-          <p className={GameDetailsStyle.title}>Requirements</p>
-          <div>
-            <p className={GameDetailsStyle.bold}>Graphics</p>
+          <div className={GameDetailsStyle.title}>Requirements</div>
+          <div className={GameDetailsStyle.requirement}>
+            <div className={GameDetailsStyle.bold}>Graphics</div>
             {game?.minimumSystemRequirements?.graphics}
           </div>
-          <div>
-            <p className={GameDetailsStyle.bold}>Memory</p>
+          <div className={GameDetailsStyle.requirement}>
+            <div className={GameDetailsStyle.bold}>Memory</div>
             {game?.minimumSystemRequirements?.memory}
           </div>
-          <div>
-            <p className={GameDetailsStyle.bold}>OS</p>
+          <div className={GameDetailsStyle.requirement}>
+            <div className={GameDetailsStyle.bold}>OS</div>
             {game?.minimumSystemRequirements?.os}
           </div>
-          <div>
-            <p className={GameDetailsStyle.bold}>Processor</p>
+          <div className={GameDetailsStyle.requirement}>
+            <div className={GameDetailsStyle.bold}>Processor</div>
             {game?.minimumSystemRequirements?.processor}
           </div>
-          <div>
-            <p className={GameDetailsStyle.bold}>Storage</p>
+          <div className={GameDetailsStyle.requirement}>
+            <div className={GameDetailsStyle.bold}>Storage</div>
             {game?.minimumSystemRequirements?.storage}
           </div>
         </div>
         <div className={GameDetailsStyle.info}>
-          <p className={GameDetailsStyle.title}>{game?.title}</p>
-          <p>{game?.description}</p>
+          <div className={GameDetailsStyle.title}>{game?.title}</div>
+          <div>{game?.description}</div>
           <Link className={GameDetailsStyle.button} to='/'>Back</Link>
         </div>
       </div>
