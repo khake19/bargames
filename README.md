@@ -26,6 +26,7 @@ storeName
 └── index.ts
 ```
 
+
 **Utils folder**
 
 ```bash
@@ -34,6 +35,8 @@ utilsName
 ├── utilsName.test.ts
 └── index.ts
 ```
+## Code Coverage
+![SCR-20230327-22y](https://user-images.githubusercontent.com/7821060/227793358-b69416d5-96aa-4983-bacb-39ef3f94dfc3.png)
 
 ## Tech Stacks
 
