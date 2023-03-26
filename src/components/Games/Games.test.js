@@ -53,7 +53,7 @@ describe('Games', () => {
     const history = createMemoryHistory()
     render(<MemoryRouter history={history}><Games /></MemoryRouter>)
 
-    const { result } = renderHook(() => useFiltersStore());
+    renderHook(() => useFiltersStore());
     const inputElement = screen.getByPlaceholderText('Search by Name...');
     fireEvent.change(inputElement, { target: { value: 'apex' } });
 
