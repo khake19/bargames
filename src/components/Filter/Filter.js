@@ -5,7 +5,7 @@ import FilterStyle from './Filter.module.css';
 import useFiltersStore from '../../stores/filters'
 
 const platformOptions = [
-  { value: 'all', label: 'All' },
+  { value: '', label: 'All' },
   { value: 'pc', label: 'PC' },
   { value: 'browser', label: 'Browser' }
 ];
@@ -17,12 +17,12 @@ const sortByOptions = [
 ];
 
 const Filter = () => {
-  const {addPlatform, addSortBy, addCategory} = useFiltersStore()
+  const {platform, sortBy, categories: persistCategories, addPlatform, addSortBy, addCategory} = useFiltersStore()
 
   const { data: categories } = useFetch('/api/categories')
   const categoryOptions = categories?.reduce((acc, category) => acc.concat({value: category, label: category}), [])
 
-  return <form className={FilterStyle.container} role="form">
+  return <form className={FilterStyle.container} role="filter-form">
       <div className={FilterStyle.left}>
         <label htmlFor="platform" className={FilterStyle.label}>
           Filter by Platform
@@ -31,7 +31,7 @@ const Filter = () => {
           name="platform"
           inputId="platform"
           className={FilterStyle.inputField}
-          defaultValue={platformOptions[0]}
+          defaultValue={platformOptions.filter((po) => po.value === platform)}
           onChange={(platform) => addPlatform(platform.value)}
           options={platformOptions}
         />
@@ -42,6 +42,7 @@ const Filter = () => {
           name="categories"
           inputId="categories"
           isMulti
+          defaultValue={persistCategories.map(category => ({value: category, label: category}))}
           className={FilterStyle.inputField}
           onChange={(categories) => addCategory(categories.map(category => category.value))}
           options={categoryOptions}
@@ -53,7 +54,7 @@ const Filter = () => {
           name="sortBy"
           inputId="sortBy"
           className={FilterStyle.inputField}
-          defaultValue={sortByOptions[0]}
+          defaultValue={sortByOptions.filter((sbo) => sbo.value === sortBy)}
           onChange={(sortBy) => addSortBy(sortBy.value)}
           options={sortByOptions}
         />

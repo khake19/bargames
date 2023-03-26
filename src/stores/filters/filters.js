@@ -1,8 +1,8 @@
 import { create } from 'zustand'
-import { devtools } from 'zustand/middleware'
+import { devtools, persist } from 'zustand/middleware'
 
 const useFiltersStore = create(
-  devtools((set) => ({
+  persist(devtools((set) => ({
     platform: '',
     addPlatform: (platform) => set({ platform }),
     sortBy: 'release-date',
@@ -11,7 +11,11 @@ const useFiltersStore = create(
     addCategory: (categories) => set({ categories }),
     search: '',
     addSearch: (search) => set({ search })
-  }))
+  })),
+    {
+      name: 'filter-storage'
+    }
+  )
 )
 
 export default useFiltersStore;

@@ -20,31 +20,31 @@ describe('Filter component', () => {
   it('should be able to select a platform', async () => {
     render(<Filter />);
     await act(() => { selectEvent.select(screen.getByLabelText('Filter by Platform'), 'PC') });
-    expect(screen.getByRole("form")).toHaveFormValues({platform: 'pc'});
+    expect(screen.getByRole("filter-form")).toHaveFormValues({platform: 'pc'});
 
     await act(() => { selectEvent.select(screen.getByLabelText('Filter by Platform'), 'Browser') });
-    expect(screen.getByRole("form")).toHaveFormValues({platform: 'browser'});
+    expect(screen.getByRole("filter-form")).toHaveFormValues({platform: 'browser'});
   });
   it('should be able to sort', async () => {
     render(<Filter />);
     await act(() => { selectEvent.select(screen.getByLabelText('Sort By'), 'Release Date') });
-    expect(screen.getByRole("form")).toHaveFormValues({sortBy: 'release-date'});
+    expect(screen.getByRole("filter-form")).toHaveFormValues({sortBy: 'release-date'});
 
     await act(() => { selectEvent.select(screen.getByLabelText('Sort By'), 'Alphabetical') });
-    expect(screen.getByRole("form")).toHaveFormValues({sortBy: 'alphabetical'});
+    expect(screen.getByRole("filter-form")).toHaveFormValues({sortBy: 'alphabetical'});
 
     await act(() => { selectEvent.select(screen.getByLabelText('Sort By'), 'Relevance') });
-    expect(screen.getByRole("form")).toHaveFormValues({sortBy: 'relevance'});
+    expect(screen.getByRole("filter-form")).toHaveFormValues({sortBy: 'relevance'});
   });
   it('should be able to select multiple categories', async () => {
     render(<Filter />);
     await act(() => { selectEvent.select(screen.getByLabelText('Filter by Category'), 'mmorpg') });
-    expect(screen.getByRole("form")).toHaveFormValues({categories: 'mmorpg'});
+    expect(screen.getByRole("filter-form")).toHaveFormValues({categories: 'mmorpg'});
 
     await act(() => { selectEvent.select(screen.getByLabelText('Filter by Category'), 'shooter') });
-    expect(screen.getByRole("form")).toHaveFormValues({categories: ['mmorpg', 'shooter']});
+    expect(screen.getByRole("filter-form")).toHaveFormValues({categories: ['mmorpg', 'shooter']});
 
     await act(() => { selectEvent.select(screen.getByLabelText('Filter by Category'), 'strategy') });
-    expect(screen.getByRole("form")).toHaveFormValues({categories: ['mmorpg', 'shooter', 'strategy']});
+    expect(screen.getByRole("filter-form")).toHaveFormValues({categories: ['mmorpg', 'shooter', 'strategy']});
   });
 });
