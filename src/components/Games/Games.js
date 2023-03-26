@@ -6,26 +6,7 @@ import Card from '../Card'
 import Filter from '../Filter'
 import Search from '../Search'
 import useFiltersStore from '../../stores/filters'
-
-const buildParams = (platform, sortBy, categories) => {
-  const queryParts = [];
-
-  if (platform) {
-    queryParts.push(`platform=${platform}`);
-  }
-
-  if (sortBy) {
-    queryParts.push(`sort-by=${sortBy}`);
-  }
-
-  if (categories.length) {
-    categories.forEach(cat => {
-      queryParts.push(`category=${cat}`);
-    });
-  }
-
-  return queryParts.length ? `?${queryParts.join('&')}` : '';
-}
+import buildParams from '../../utils/buildParams'
 
 const Games = () => {
   const { platform, sortBy, categories, search } = useFiltersStore();
@@ -52,7 +33,7 @@ const Games = () => {
         shortDescription={game.shortDescription}
         />)}
     </div>
-    </div>
+  </div>
 }
 
 export default Games
